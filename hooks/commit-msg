@@ -22,3 +22,13 @@ test "" = "$(grep '^Signed-off-by: ' "$1" |
 	echo >&2 Duplicate Signed-off-by lines.
 	exit 1
 }
+
+HOOK_FOLDER="commit-msgs"
+COMMIT_MSG_FILE=$1
+for HOOK_FILE in `ls .git/hooks/$HOOK_FOLDER/*.rb`; do
+  ruby $HOOK_FILE $COMMIT_MSG_FILE
+  HOOK_STATUS=$?
+  if [ $HOOK_STATUS -ne 0 ]; then
+    exit $HOOK_STATUS
+  fi
+done
