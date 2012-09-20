@@ -13,9 +13,14 @@ A Git template that contains a few helpful hooks written in Ruby.
 
         $ git config --global init.templatedir "~/.git_template"
 
-  3. New repositories: when you `git init`, the template will be copied
+  3. New repositories:
 
-  4. Existing repositories: if you `git init`, the template will be copied, with one important caveat: **existing files are not overwritten** (unfortunately, if updates are made to the template, they must be manually copied over)
+        $ git init
+
+  4. Existing repositories:
+
+        $ rm -rf .git/hooks
+        $ git init
 
 ## TODO
 
