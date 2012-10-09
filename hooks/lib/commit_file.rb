@@ -8,7 +8,9 @@ class CommitFile
     end
 
     def pathnames
-      ARGV.map { |argv| Pathname.new(argv) }
+      pathnames = ARGV.map { |argv| Pathname.new(argv) }
+      # Return only pathnames for files that exist.
+      pathnames.select { |pathname| pathname.exist? }
     end
   end # self
 
