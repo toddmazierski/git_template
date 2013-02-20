@@ -25,4 +25,3 @@ A Git template that contains a few helpful hooks written in Ruby.
 ## TODO
 
   * Language conditionals
-  * Automated way to update template globally in all repositories
