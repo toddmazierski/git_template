@@ -4,10 +4,10 @@ A Git template that contains a few helpful hooks written in Ruby.
 
 ## Installation
 
-  1. Clone the repository into your home folder:
+  1. Clone the repository and symlink to your home folder:
 
-        $ cd
         $ git clone git@github.com:toddmazierski/.git_template.git
+        $ ln -s ~/code/.git_template ~/.git_template
 
   2. Configure Git to use the template globally:
 
