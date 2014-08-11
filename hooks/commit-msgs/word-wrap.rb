@@ -1,9 +1,15 @@
 require "pathname"
 
+# The divider inserted into the commit message when the --verbose flag is used.
+VERBOSE_DIVIDER = "# ------------------------ >8 ------------------------\n"
+
 # Taken from:
 #   https://github.com/rails/rails/blob/c5205041f65206a1490063b08915e7b2a2151a61/actionpack/lib/action_view/helpers/text_helper.rb#L223
 def word_wrap(text, line_width = 80)
-  text.split("\n").collect do |line|
+  # Only keep the text before the --verbose flag divider.
+  before_divider, _ = text.split(VERBOSE_DIVIDER)
+
+  before_divider.split("\n").collect do |line|
     # Discard comments.
     next if line =~ /^#/
     line.length > line_width ? line.gsub(/(.{1,#{line_width}})(\s+|$)/, "\\1\n").strip : line
