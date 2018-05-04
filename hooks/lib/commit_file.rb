@@ -11,7 +11,7 @@ class CommitFile
   def self.pathnames
     pathnames = ARGV.map { |argv| Pathname.new(argv) }
     # Return only pathnames for files that exist and aren't on the blacklist.
-    pathnames.select { |pathname| pathname.exist? and not blacklisted?(pathname) }
+    pathnames.select { |pathname| pathname.file? and not blacklisted?(pathname) }
   end
 
   def self.blacklisted?(pathname)
