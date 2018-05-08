@@ -48,7 +48,7 @@ fi
 
 HOOK_FOLDER="pre-commits"
 COMMIT_FILES=`git diff --staged --name-only $against`
-for HOOK_FILE in `ls .git/hooks/$HOOK_FOLDER/*.rb`; do
+for HOOK_FILE in `ls $GIT_DIR/hooks/$HOOK_FOLDER/*.rb`; do
   ruby $HOOK_FILE $COMMIT_FILES
   HOOK_STATUS=$?
   if [ $HOOK_STATUS -ne 0 ]; then
