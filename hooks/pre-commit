@@ -46,6 +46,10 @@ then
   exit 1
 fi
 
+if [ -z "$GIT_DIR" ]; then
+  GIT_DIR=".git"
+fi;
+
 HOOK_FOLDER="pre-commits"
 COMMIT_FILES=`git diff --staged --name-only $against`
 for HOOK_FILE in `ls $GIT_DIR/hooks/$HOOK_FOLDER/*.rb`; do
