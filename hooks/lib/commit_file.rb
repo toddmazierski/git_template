@@ -23,7 +23,7 @@ class CommitFile
   end
 
   def lines
-    @pathname.readlines.each_with_index.collect do |line, index|
+    @pathname.readlines(encoding: 'UTF-8').each_with_index.collect do |line, index|
       Line.new(@pathname, line, index)
     end
   end
