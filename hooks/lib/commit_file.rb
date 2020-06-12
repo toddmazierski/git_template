@@ -2,7 +2,7 @@ require "pathname"
 require File.expand_path("../line", __FILE__)
 
 class CommitFile
-  EXTENSION_BLACKLIST = %w(.png .jpg .gif)
+  EXTENSION_BLOCKLIST = %w(.png .jpg .gif)
 
   def self.all
     pathnames.map { |pathname| new(pathname) }
@@ -10,12 +10,12 @@ class CommitFile
 
   def self.pathnames
     pathnames = ARGV.map { |argv| Pathname.new(argv) }
-    # Return only pathnames for files that exist and aren't on the blacklist.
-    pathnames.select { |pathname| pathname.file? and not blacklisted?(pathname) }
+    # Return only pathnames for files that exist and aren't on the blocklist.
+    pathnames.select { |pathname| pathname.file? and not blocklisted?(pathname) }
   end
 
-  def self.blacklisted?(pathname)
-    EXTENSION_BLACKLIST.include?(pathname.extname)
+  def self.blocklisted?(pathname)
+    EXTENSION_BLOCKLIST.include?(pathname.extname)
   end
 
   def initialize(pathname)
